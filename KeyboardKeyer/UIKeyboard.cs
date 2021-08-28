@@ -22,6 +22,12 @@
     internal static class BlockSongCoreRefresh {
         static MethodBase TargetMethod() => AccessTools.Method("SongCore.Loader:Update");
         static Exception Cleanup(Exception _) => null;
-        static bool Prefix() => BeatmapDataLoaderGetBeatmapDataFromBeatmapSaveData.keyerInstance?.isActiveAndEnabled != true;
+        static bool Prefix() {
+            if(BeatmapDataLoaderGetBeatmapDataFromBeatmapSaveData.keyerInstance == null)
+                return true;
+            
+            return !BeatmapDataLoaderGetBeatmapDataFromBeatmapSaveData.keyerInstance.isActiveAndEnabled;
+        }
+        
     }
 }
