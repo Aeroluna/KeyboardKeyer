@@ -1,0 +1,16 @@
+
+[*]
+# Stuff
+dotnet_diagnostic.cs0649.severity = none
+dotnet_diagnostic.sa1633.severity = none
+dotnet_diagnostic.sa1200.severity = none
+dotnet_diagnostic.sa1309.severity = none
+dotnet_diagnostic.sa1310.severity = none
+dotnet_diagnostic.sa1101.severity = none
+dotnet_diagnostic.sa1649.severity = none
+dotnet_diagnostic.sa1402.severity = none
+dotnet_diagnostic.sa1413.severity = none
+dotnet_diagnostic.sa1313.severity = none
+dotnet_diagnostic.sa0001.severity = none
+dotnet_diagnostic.sa1300.severity = none
+resharper_inconsistent_naming_highlighting = none
