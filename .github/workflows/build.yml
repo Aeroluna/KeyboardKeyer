@@ -1,0 +1,28 @@
+name: Build
+
+on:
+  push:
+    branches: [ "master" ]
+    paths:
+    - .github/workflows/build.yml
+    - KeyboardKeyer/**
+    - KeyboardKeyer.sln
+
+jobs:
+  build:
+    name: Build
+    uses: Aeroluna/beat-saber-workflows/.github/workflows/build-release.yml@master
+    with:
+      project-path: KeyboardKeyer/KeyboardKeyer.csproj
+      game-version: 1.29.1
+    secrets: inherit
+
+  create_release:
+    name: Create Release
+    needs: build
+    permissions:
+      contents: write
+    uses: Aeroluna/beat-saber-workflows/.github/workflows/create-release-from-project.yml@master
+    with:
+      project-path: KeyboardKeyer/KeyboardKeyer.csproj
+    secrets: inherit
