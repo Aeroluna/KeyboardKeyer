@@ -1,29 +1,33 @@
-﻿namespace KeyboardKeyer
+﻿using System.Reflection;
+using HarmonyLib;
+using IPA;
+using IPA.Logging;
+using JetBrains.Annotations;
+
+namespace KeyboardKeyer;
+
+[Plugin(RuntimeOptions.SingleStartInit)]
+public class Plugin
 {
-    using System.Reflection;
-    using HarmonyLib;
-    using IPA;
-    using IPALogger = IPA.Logging.Logger;
+    internal const string HARMONY_ID = "dev.aeroluna.KeyboardKeyer";
 
-    [Plugin(RuntimeOptions.SingleStartInit)]
-    public class Plugin
+    internal static readonly Harmony _harmonyInstance = new(HARMONY_ID);
+
+#pragma warning disable CA1822
+    [UsedImplicitly]
+    [Init]
+    public Plugin(Logger pluginLogger)
     {
-        internal const string HARMONYID = "com.aeroluna.BeatSaber.KeyboardKeyer";
-
-        internal static readonly Harmony _harmonyInstance = new Harmony(HARMONYID);
-
-        internal static IPALogger Log { get; private set; }
-
-        [Init]
-        public void Init(IPALogger logger)
-        {
-            Log = logger;
-        }
-
-        [OnEnable]
-        public void OnEnable()
-        {
-            _harmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
-        }
+        Log = pluginLogger;
     }
+
+    internal static Logger Log { get; private set; } = null!;
+
+    [UsedImplicitly]
+    [OnEnable]
+    public void OnEnable()
+    {
+        _harmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
+    }
+#pragma warning restore CA1822
 }

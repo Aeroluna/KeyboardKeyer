@@ -5,7 +5,14 @@
     <OutputType>Library</OutputType>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
-    <Configurations>Debug-1.29.1;Release-1.29.1</Configurations>
+    <Configurations>Debug;Release</Configurations>
+    <DebugType>portable</DebugType>
+    <BSMTProjectType>BSIPA</BSMTProjectType>
+    <GenerateManifest>true</GenerateManifest>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" $(Configuration.Contains('Release')) ">
+    <Optimize>true</Optimize>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -14,6 +21,7 @@
     <Author>Aeroluna</Author>
     <Version>1.1.0</Version>
     <Description>Allows use of the PC keyboard on the in-game keyboard.</Description>
+    <GameVersion>1.29.1</GameVersion>
   </PropertyGroup>
   <ItemGroup>
     <DependsOn Include="BSIPA" Version="^4.2.2" />
@@ -21,16 +29,17 @@
 
   <ItemGroup>
     <Reference Include="0Harmony" HintPath="$(BeatSaberDir)\Libs\0Harmony.dll" />
-    <Reference Include="HMUI" HintPath="$(BeatSaberDir)\Beat Saber_Data\Managed\HMUI.dll" />
+    <Reference Include="HMUI" HintPath="$(BeatSaberDir)\Beat Saber_Data\Managed\HMUI.dll" Publicize="true" />
     <Reference Include="IPA.Loader" HintPath="$(BeatSaberDir)\Beat Saber_Data\Managed\IPA.Loader.dll" />
     <Reference Include="UnityEngine.CoreModule" HintPath="$(BeatSaberDir)\Beat Saber_Data\Managed\UnityEngine.CoreModule.dll" />
     <Reference Include="UnityEngine.IMGUIModule" HintPath="$(BeatSaberDir)\Beat Saber_Data\Managed\UnityEngine.IMGUIModule.dll" />
+    <Reference Include="UnityEngine.InputLegacyModule" HintPath="$(BeatSaberDir)\Beat Saber_Data\Managed\UnityEngine.InputLegacyModule.dll"/>
+    <Reference Include="UnityEngine.UI" HintPath="$(BeatSaberDir)\Beat Saber_Data\Managed\UnityEngine.UI.dll"/>
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="BeatSaberModdingTools.Tasks.Luna" Version="2.1.0" />
     <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.*" />
-    <PackageReference Include="LunaBSMod.Tasks" Version="1.1.0" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.354" />
   </ItemGroup>
 </Project>
